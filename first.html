@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geo Cats</title>
+  </head>
+  <body>
+    <style>
+      /* Set fixed size for all images */
+      img {
+        width: 300px;
+        height: 300px;
+      }
+      button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+    }
+
+    button:hover {
+  background-color: #3e8e41;
+}
+
+button:active {
+  background-color: #245c2b;
+}
+
+      /* Style radio buttons to have blue background when selected */
+      input[type="radio"] {
+        display: none;
+      }
+      input[type="radio"] + label {
+        background-color: white;
+        border: 2px solid blue;
+        padding: 5px;
+        cursor: pointer;
+      }
+      input[type="radio"]:checked + label {
+        background-color: blue;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Geo Cats</h1>
+    <p>I boleh tahu address you dengan cat you like heheh</p>
+
+    <h2>Question 1:</h2>
+    <input type="radio" id="question1-kitten1-radio" name="question1" value="kitten1">
+    <label for="question1-kitten1-radio"><img id="question1-kitten1"></label>
+
+    <input type="radio" id="question1-kitten2-radio" name="question1" value="kitten2">
+    <label for="question1-kitten2-radio"><img id="question1-kitten2"></label>
+
+    <h2>Question 2:</h2>
+    <input type="radio" id="question2-kitten1-radio" name="question2" value="kitten3">
+    <label for="question2-kitten1-radio"><img id="question2-kitten1"></label>
+
+    <input type="radio" id="question2-kitten2-radio" name="question2" value="kitten4">
+    <label for="question2-kitten2-radio"><img id="question2-kitten2"></label>
+
+    <h2>Question 3:</h2>
+    <input type="radio" id="question3-kitten1-radio" name="question3" value="kitten5">
+    <label for="question3-kitten1-radio"><img id="question3-kitten1"></label>
+
+    <input type="radio" id="question3-kitten2-radio" name="question3" value="kitten6">
+    <label for="question3-kitten2-radio"><img id="question3-kitten2"></label>
+    <br>
+    <br>
+    <form action="results.html" method="GET">
+      <button type="submit">Submit</button>
+    </form>
+    
+    <script>
+      // Use the Cat API to fetch random cat images for each question
+      fetch('https://api.thecatapi.com/v1/images/search')
+        .then(response => response.json())
+        .then(data => {
+          // Set the source of the first question's first kitten image
+          const question1Kitten1 = document.getElementById('question1-kitten1');
+          question1Kitten1.src = data[0].url;
+          
+          // Fetch another random cat image
+          return fetch('https://api.thecatapi.com/v1/images/search');
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Set the source of the first question's second kitten image
+          const question1Kitten2 = document.getElementById('question1-kitten2');
+          question1Kitten2.src = data[0].url;
+          
+          // Fetch another random cat image
+          return fetch('https://api.thecatapi.com/v1/images/search');
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Set the source of the second question's first kitten image
+          const question2Kitten1 = document.getElementById('question2-kitten1');
+          question2Kitten1.src = data[0].url;
+          
+          // Fetch another random cat image
+          return fetch('https://api.thecatapi.com/v1/images/search');
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Set the source of the second question's second kitten image
+          const question2Kitten2 = document.getElementById('question2-kitten2');
+          question2Kitten2.src = data[0].url;
+          
+          // Fetch another random cat image
+          return fetch('https://api.thecatapi.com/v1/images/search');
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Set the source of the third question's first kitten image
+          const question3Kitten1 = document.getElementById('question3-kitten1');
+          question3Kitten1.src = data[0].url;
+          
+          // Fetch another random cat image
+          return fetch('https://api.thecatapi.com/v1/images/search');
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Set the source of the third question's second kitten image
+          const question3Kitten2 = document.getElementById('question3-kitten2');
+          question3Kitten2.src = data[0].url;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    </script>
+    
+
+  </body>
+</html>
